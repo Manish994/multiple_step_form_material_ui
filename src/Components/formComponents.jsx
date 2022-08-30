@@ -1,11 +1,28 @@
 import React, { Component } from "react";
-import { Grid, withStyles, Box, Paper } from "@material-ui/core";
+import { Grid, withStyles, Box, Paper, TextField } from "@material-ui/core";
 import { Styles } from "./Common/styles";
-import { RenderText } from "./Common/displayComponents";
+import { RenderText, RenderFormField } from "./Common/displayComponents";
 import propTypes from "prop-types";
 
 class FormComponent extends Component {
+  state = {
+    data: {
+      firstname: "",
+    },
+    error: {},
+  };
   render() {
+    //  const handleFieldChange = (e) => {
+    //    console.log(e.target);
+    //  console.log("Name", e.target.name, "Value Is", e.target.value);
+    //  };
+    const handleFieldChange = ({ target }) => {
+      const { data } = this.state;
+      data[target.name] = target.value;
+      // this.setState({ data: data });
+      this.setState({ data });
+    };
+
     const { classes } = this.props;
     return (
       <Grid container className={classes.formContainer}>
@@ -18,6 +35,26 @@ class FormComponent extends Component {
             {/* <Typography> Form Steps</Typography> */}
             <form className={classes.form}>
               {RenderText({ label: "Form Componet Step 01" })}
+              <Box>
+                {/* <TextField
+                  label="FirstName"
+                  variant="outlined"
+                  name="firstname"
+                  fullWidth={true}
+                  size="small"
+                  value={this.state.data.firstname}
+                  onChange={handleFieldChange}
+                ></TextField> */}
+                {RenderFormField({
+                  label: "FirstName",
+                  variant: "outlined",
+                  name: "firstname",
+                  size: "small",
+                  state: this.state,
+                  // handleFieldChange: handleFieldChange,
+                  handleFieldChange,
+                })}
+              </Box>
             </form>
           </Box>
         </Grid>

@@ -6,6 +6,7 @@ const Styles = {
     flexFlow: "row wrap",
     justifyContent: "center",
     alignItems: "center",
+    backgroundColor: "hsla(0, 100%, 70%, 0.3);",
   },
   form: {
     minHeight: "350px",
