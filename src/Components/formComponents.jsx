@@ -17,10 +17,16 @@ class FormComponent extends Component {
     //  console.log("Name", e.target.name, "Value Is", e.target.value);
     //  };
     const handleFieldChange = ({ target }) => {
-      const { data } = this.state;
+      const { data, error } = this.state;
+
+      target.value.trim().length <= 3
+        ? (error[target.name] = `${target.name} have at least 3 letter`)
+        : (error[target.name] = "");
+
       data[target.name] = target.value;
       // this.setState({ data: data });
-      this.setState({ data });
+      this.setState({ data, error });
+      // this.setState({ error: error });
     };
 
     const { classes } = this.props;

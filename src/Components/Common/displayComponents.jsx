@@ -21,7 +21,7 @@ const RenderFormField = ({
   name,
   handleFieldChange,
 }) => {
-  const { data } = state;
+  const { data, error } = state;
   return (
     <TextField
       label={label ? label : ""}
@@ -32,6 +32,9 @@ const RenderFormField = ({
       name={name}
       value={data[name]}
       onChange={handleFieldChange}
+      error={error[name] ? true : false}
+      helperText={error[name]}
+      autoComplete="off"
     ></TextField>
   );
 };
