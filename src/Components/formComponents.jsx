@@ -1,7 +1,12 @@
 import React, { Component } from "react";
 import { Grid, withStyles, Box, Paper } from "@material-ui/core";
 import { Styles } from "./Common/styles";
-import { RenderText, RenderFormField } from "./Common/displayComponents";
+import {
+  RenderText,
+  RenderFormTextField,
+  RenderFormSelectField,
+  RenderFormButton,
+} from "./Common/displayComponents";
 import propTypes from "prop-types";
 
 class FormComponent extends Component {
@@ -9,6 +14,9 @@ class FormComponent extends Component {
     data: {
       firstname: "",
       lastname: "",
+      gender: "",
+      email: "",
+      phonenumber: "",
     },
     error: {},
   };
@@ -32,6 +40,27 @@ class FormComponent extends Component {
 
     //css styling
     const { classes } = this.props;
+
+    //handle Form Submit
+    const handleFormSubmit = () => {
+      console.log(this.state);
+    };
+
+    //gender array
+    const options = [
+      {
+        key: "male",
+        value: "Male",
+      },
+      {
+        key: "female",
+        value: "Femal",
+      },
+      {
+        key: "other",
+        value: "Other",
+      },
+    ];
     return (
       <Grid container className={classes.formContainer}>
         <Grid item xs={12} sm={7}>
@@ -64,10 +93,12 @@ class FormComponent extends Component {
                   handleFieldChange,
                 })} */}
               {/* </Box> */}
+              <pre>{JSON.stringify(this.state.data, undefined, 2)}</pre>
               <Grid container spacing={2}>
                 <Grid item xs={12} sm={6}>
-                  {RenderFormField({
+                  {RenderFormTextField({
                     label: "FirstName",
+                    type: "",
                     variant: "outlined",
                     name: "firstname",
                     size: "small",
@@ -77,8 +108,9 @@ class FormComponent extends Component {
                   })}
                 </Grid>
                 <Grid item xs={12} sm={6}>
-                  {RenderFormField({
+                  {RenderFormTextField({
                     label: "LastName",
+                    type: "",
                     variant: "outlined",
                     name: "lastname",
                     size: "small",
@@ -87,6 +119,87 @@ class FormComponent extends Component {
                     handleFieldChange,
                   })}
                 </Grid>
+              </Grid>
+              {/* <Grid
+                container
+                style={{ marginBottom: "10px", marginTop: "10px" }}
+              >
+                <Grid item xs={12} sm={12}>
+                  <TextField
+                    select
+                    label="Select Gender"
+                    variant="outlined"
+                    color="primary"
+                    name="gender"
+                    fullWidth={true}
+                    size="small"
+                    value={this.state.data.gender}
+                    onChange={handleFieldChange}
+                  >
+                    {options.map((item, index) => {
+                      return (
+                        <MenuItem key={index} value={item.key}>
+                          {item.value}
+                        </MenuItem>
+                      );
+                    })}
+                  </TextField>
+                </Grid>
+              </Grid> */}
+              <Grid
+                container
+                style={{ marginBottom: "10px", marginTop: "10px" }}
+              >
+                <Grid item xs={12} sm={12}>
+                  {RenderFormSelectField({
+                    label: "Select Gender",
+                    variant: "outlined",
+                    size: "small",
+                    color: "primary",
+                    name: "gender",
+                    state: this.state,
+                    handleFieldChange,
+                    options,
+                  })}
+                </Grid>
+              </Grid>
+              <Grid container spacing={2}>
+                <Grid item xs={12} sm={6}>
+                  {RenderFormTextField({
+                    label: "Email",
+                    type: "",
+                    name: "email",
+                    color: "primary",
+                    variant: "outlined",
+                    size: "small",
+                    state: this.state,
+                    handleFieldChange,
+                  })}
+                </Grid>
+                <Grid item xs={12} sm={6}>
+                  {RenderFormTextField({
+                    label: "Phone Number",
+                    type: "Number",
+                    color: "primary",
+                    variant: "outlined",
+                    size: "small",
+                    name: "phonenumber",
+                    handleFieldChange,
+                    state: this.state,
+                  })}
+                </Grid>
+              </Grid>
+              <Grid
+                container
+                style={{ marginBottom: "10px", marginTop: "10px" }}
+                justifyContent="flex-end"
+              >
+                {/* <Button variant="outlined" onClick={handleFormSubmit}>Next</Button> */}
+                {RenderFormButton({
+                  label: "Next",
+                  variant: "outlined",
+                  handleFormSubmit,
+                })}
               </Grid>
             </form>
           </Box>

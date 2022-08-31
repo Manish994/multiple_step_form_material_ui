@@ -1,4 +1,4 @@
-import { Typography, TextField } from "@material-ui/core";
+import { Typography, TextField, MenuItem, Button } from "@material-ui/core";
 
 const RenderText = ({ label, color, align, variant, component }) => {
   return (
@@ -12,7 +12,8 @@ const RenderText = ({ label, color, align, variant, component }) => {
   );
 };
 
-const RenderFormField = ({
+const RenderFormTextField = ({
+  type,
   label,
   color,
   state,
@@ -25,10 +26,11 @@ const RenderFormField = ({
   return (
     <TextField
       label={label ? label : ""}
+      type={type ? type : ""}
       color={color ? color : "primary"}
       variant={variant ? variant : "outlined"}
       fullWidth={true}
-      size={size ? size : "sm"}
+      size={size ? size : "small"}
       name={name}
       value={data[name]}
       onChange={handleFieldChange}
@@ -39,4 +41,49 @@ const RenderFormField = ({
   );
 };
 
-export { RenderText, RenderFormField };
+const RenderFormSelectField = ({
+  label,
+  color,
+  state,
+  variant,
+  size,
+  name,
+  handleFieldChange,
+  options,
+}) => {
+  const { data, error } = state;
+  return (
+    <TextField
+      select
+      label={label ? label : ""}
+      variant={variant ? variant : "outlined"}
+      size={size ? size : "small"}
+      fullWidth={true}
+      color={color ? color : "primary"}
+      name={name}
+      value={data[name]}
+      onChange={handleFieldChange}
+      error={error[name] ? true : false}
+      helperText={error[name]}
+    >
+      {options.map((item, index) => (
+        <MenuItem key={index} value={item.key}>
+          {item.value}
+        </MenuItem>
+      ))}
+    </TextField>
+  );
+};
+
+const RenderFormButton = ({ label, variant, handleFormSubmit }) => (
+  <Button variant={variant ? variant : "outlined"} onClick={handleFormSubmit}>
+    {label}
+  </Button>
+);
+
+export {
+  RenderText,
+  RenderFormTextField,
+  RenderFormSelectField,
+  RenderFormButton,
+};
