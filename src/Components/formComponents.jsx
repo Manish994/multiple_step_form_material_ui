@@ -1,13 +1,9 @@
 import React, { Component } from "react";
 import { Grid, withStyles, Box, Paper } from "@material-ui/core";
 import { Styles } from "./Common/styles";
-import {
-  RenderText,
-  RenderFormTextField,
-  RenderFormSelectField,
-  RenderFormButton,
-} from "./Common/displayComponents";
+import { RenderText } from "./Common/displayComponents";
 import propTypes from "prop-types";
+import Step01 from "./Steps/step01";
 
 class FormComponent extends Component {
   state = {
@@ -43,7 +39,7 @@ class FormComponent extends Component {
 
     //handle Form Submit
     const handleFormSubmit = () => {
-      console.log(this.state);
+      console.log(this.state.data);
     };
 
     //gender array
@@ -71,136 +67,12 @@ class FormComponent extends Component {
           <Box component={Paper}>
             {/* <Typography> Form Steps</Typography> */}
             <form className={classes.form}>
-              {RenderText({ label: "Form Componet Step 01" })}
-
-              {/* <Box> */}
-              {/* <TextField
-                  label="FirstName"
-                  variant="outlined"
-                  name="firstname"
-                  fullWidth={true}
-                  size="small"
-                  value={this.state.data.firstname}
-                  onChange={handleFieldChange}
-                ></TextField> */}
-              {/* {RenderFormField({
-                  label: "FirstName",
-                  variant: "outlined",
-                  name: "firstname",
-                  size: "small",
-                  state: this.state,
-                  // handleFieldChange: handleFieldChange,
-                  handleFieldChange,
-                })} */}
-              {/* </Box> */}
-              <pre>{JSON.stringify(this.state.data, undefined, 2)}</pre>
-              <Grid container spacing={2}>
-                <Grid item xs={12} sm={6}>
-                  {RenderFormTextField({
-                    label: "FirstName",
-                    type: "",
-                    variant: "outlined",
-                    name: "firstname",
-                    size: "small",
-                    state: this.state,
-                    // handleFieldChange: handleFieldChange,
-                    handleFieldChange,
-                  })}
-                </Grid>
-                <Grid item xs={12} sm={6}>
-                  {RenderFormTextField({
-                    label: "LastName",
-                    type: "",
-                    variant: "outlined",
-                    name: "lastname",
-                    size: "small",
-                    state: this.state,
-                    // handleFieldChange: handleFieldChange,
-                    handleFieldChange,
-                  })}
-                </Grid>
-              </Grid>
-              {/* <Grid
-                container
-                style={{ marginBottom: "10px", marginTop: "10px" }}
-              >
-                <Grid item xs={12} sm={12}>
-                  <TextField
-                    select
-                    label="Select Gender"
-                    variant="outlined"
-                    color="primary"
-                    name="gender"
-                    fullWidth={true}
-                    size="small"
-                    value={this.state.data.gender}
-                    onChange={handleFieldChange}
-                  >
-                    {options.map((item, index) => {
-                      return (
-                        <MenuItem key={index} value={item.key}>
-                          {item.value}
-                        </MenuItem>
-                      );
-                    })}
-                  </TextField>
-                </Grid>
-              </Grid> */}
-              <Grid
-                container
-                style={{ marginBottom: "10px", marginTop: "10px" }}
-              >
-                <Grid item xs={12} sm={12}>
-                  {RenderFormSelectField({
-                    label: "Select Gender",
-                    variant: "outlined",
-                    size: "small",
-                    color: "primary",
-                    name: "gender",
-                    state: this.state,
-                    handleFieldChange,
-                    options,
-                  })}
-                </Grid>
-              </Grid>
-              <Grid container spacing={2}>
-                <Grid item xs={12} sm={6}>
-                  {RenderFormTextField({
-                    label: "Email",
-                    type: "",
-                    name: "email",
-                    color: "primary",
-                    variant: "outlined",
-                    size: "small",
-                    state: this.state,
-                    handleFieldChange,
-                  })}
-                </Grid>
-                <Grid item xs={12} sm={6}>
-                  {RenderFormTextField({
-                    label: "Phone Number",
-                    type: "Number",
-                    color: "primary",
-                    variant: "outlined",
-                    size: "small",
-                    name: "phonenumber",
-                    handleFieldChange,
-                    state: this.state,
-                  })}
-                </Grid>
-              </Grid>
-              <Grid
-                container
-                style={{ marginBottom: "10px", marginTop: "10px" }}
-                justifyContent="flex-end"
-              >
-                {/* <Button variant="outlined" onClick={handleFormSubmit}>Next</Button> */}
-                {RenderFormButton({
-                  label: "Next",
-                  variant: "outlined",
-                  handleFormSubmit,
-                })}
-              </Grid>
+              <Step01
+                state={this.state}
+                handleFieldChange={handleFieldChange}
+                handleFormSubmit={handleFormSubmit}
+                options={options}
+              ></Step01>
             </form>
           </Box>
         </Grid>
