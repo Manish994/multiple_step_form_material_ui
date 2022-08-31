@@ -1,5 +1,13 @@
 import React, { Component } from "react";
-import { Grid, withStyles, Box, Paper } from "@material-ui/core";
+import {
+  Grid,
+  withStyles,
+  Box,
+  Paper,
+  Stepper,
+  Step,
+  StepLabel,
+} from "@material-ui/core";
 import { Styles } from "./Common/styles";
 import { RenderText } from "./Common/displayComponents";
 import propTypes from "prop-types";
@@ -15,6 +23,7 @@ class FormComponent extends Component {
       phonenumber: "",
     },
     error: {},
+    currentstep: 0,
   };
   render() {
     //  const handleFieldChange = (e) => {
@@ -37,9 +46,12 @@ class FormComponent extends Component {
     //css styling
     const { classes } = this.props;
 
-    //handle Form Submit
-    const handleFormSubmit = () => {
-      console.log(this.state.data);
+    //handle Next Button Click
+    const handleNextButtonClick = () => {
+      let { currentstep } = this.state;
+      currentstep = currentstep + 1;
+      // this.setState({ currentstep: currentstep });
+      this.setState({ currentstep });
     };
 
     //gender array
@@ -57,9 +69,23 @@ class FormComponent extends Component {
         value: "Other",
       },
     ];
+    const stepperStep = [
+      { key: "01", value: "STEP 01" },
+      { key: "02", value: "STEP 02" },
+      { key: "03", value: "STEP 03" },
+    ];
     return (
       <Grid container className={classes.formContainer}>
         <Grid item xs={12} sm={7}>
+          <Box p={2} mb={5} component={Paper}>
+            <Stepper activeStep={this.state.currentstep} alternativeLabel>
+              {stepperStep.map((item, index) => (
+                <Step key={index}>
+                  <StepLabel>{item.value}</StepLabel>
+                </Step>
+              ))}
+            </Stepper>
+          </Box>
           <Box p={2} mb={4} component={Paper}>
             {/* <Typography> Stepper Works Here</Typography> */}
             {RenderText({ label: "Stepper Works Here" })}
@@ -70,7 +96,7 @@ class FormComponent extends Component {
               <Step01
                 state={this.state}
                 handleFieldChange={handleFieldChange}
-                handleFormSubmit={handleFormSubmit}
+                handleNextButtonClick={handleNextButtonClick}
                 options={options}
               ></Step01>
             </form>

@@ -75,8 +75,11 @@ const RenderFormSelectField = ({
   );
 };
 
-const RenderFormButton = ({ label, variant, handleFormSubmit }) => (
-  <Button variant={variant ? variant : "outlined"} onClick={handleFormSubmit}>
+const RenderFormButton = ({ label, variant, handleNextButtonClick }) => (
+  <Button
+    variant={variant ? variant : "outlined"}
+    onClick={handleNextButtonClick}
+  >
     {label}
   </Button>
 );

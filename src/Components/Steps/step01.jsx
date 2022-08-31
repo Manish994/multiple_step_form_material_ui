@@ -7,7 +7,7 @@ import {
   RenderFormButton,
 } from "../Common/displayComponents";
 
-function Step01({ options, state, handleFieldChange, handleFormSubmit }) {
+function Step01({ options, state, handleFieldChange, handleNextButtonClick }) {
   return (
     <>
       {RenderText({ label: "Form Componet Step 01" })}
@@ -135,11 +135,11 @@ function Step01({ options, state, handleFieldChange, handleFormSubmit }) {
         style={{ marginBottom: "10px", marginTop: "10px" }}
         justifyContent="flex-end"
       >
-        {/* <Button variant="outlined" onClick={handleFormSubmit}>Next</Button> */}
+        {/* <Button variant="outlined" onClick={handleNextButtonClick}>Next</Button> */}
         {RenderFormButton({
           label: "Next",
           variant: "outlined",
-          handleFormSubmit,
+          handleNextButtonClick,
         })}
       </Grid>
     </>
