@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Grid, withStyles, Box, Paper, TextField } from "@material-ui/core";
+import { Grid, withStyles, Box, Paper } from "@material-ui/core";
 import { Styles } from "./Common/styles";
 import { RenderText, RenderFormField } from "./Common/displayComponents";
 import propTypes from "prop-types";
@@ -8,6 +8,7 @@ class FormComponent extends Component {
   state = {
     data: {
       firstname: "",
+      lastname: "",
     },
     error: {},
   };
@@ -29,6 +30,7 @@ class FormComponent extends Component {
       // this.setState({ error: error });
     };
 
+    //css styling
     const { classes } = this.props;
     return (
       <Grid container className={classes.formContainer}>
@@ -41,8 +43,9 @@ class FormComponent extends Component {
             {/* <Typography> Form Steps</Typography> */}
             <form className={classes.form}>
               {RenderText({ label: "Form Componet Step 01" })}
-              <Box>
-                {/* <TextField
+
+              {/* <Box> */}
+              {/* <TextField
                   label="FirstName"
                   variant="outlined"
                   name="firstname"
@@ -51,7 +54,7 @@ class FormComponent extends Component {
                   value={this.state.data.firstname}
                   onChange={handleFieldChange}
                 ></TextField> */}
-                {RenderFormField({
+              {/* {RenderFormField({
                   label: "FirstName",
                   variant: "outlined",
                   name: "firstname",
@@ -59,8 +62,32 @@ class FormComponent extends Component {
                   state: this.state,
                   // handleFieldChange: handleFieldChange,
                   handleFieldChange,
-                })}
-              </Box>
+                })} */}
+              {/* </Box> */}
+              <Grid container spacing={2}>
+                <Grid item xs={12} sm={6}>
+                  {RenderFormField({
+                    label: "FirstName",
+                    variant: "outlined",
+                    name: "firstname",
+                    size: "small",
+                    state: this.state,
+                    // handleFieldChange: handleFieldChange,
+                    handleFieldChange,
+                  })}
+                </Grid>
+                <Grid item xs={12} sm={6}>
+                  {RenderFormField({
+                    label: "LastName",
+                    variant: "outlined",
+                    name: "lastname",
+                    size: "small",
+                    state: this.state,
+                    // handleFieldChange: handleFieldChange,
+                    handleFieldChange,
+                  })}
+                </Grid>
+              </Grid>
             </form>
           </Box>
         </Grid>
