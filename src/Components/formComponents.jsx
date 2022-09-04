@@ -12,6 +12,9 @@ import { Styles } from "./Common/styles";
 import { RenderText } from "./Common/displayComponents";
 import propTypes from "prop-types";
 import Step01 from "./Steps/step01";
+import Step02 from "./Steps/step02";
+import Step03 from "./Steps/step03";
+import Finished from "./Steps/finished";
 
 class FormComponent extends Component {
   state = {
@@ -89,6 +92,30 @@ class FormComponent extends Component {
         value: "Other",
       },
     ];
+
+    //gender array
+    const yearOptions = [
+      {
+        key: "1",
+        value: "2000",
+      },
+      {
+        key: "2",
+        value: "2003",
+      },
+      {
+        key: "3",
+        value: "2004",
+      },
+      {
+        key: "4",
+        value: "2008",
+      },
+      {
+        key: "5",
+        value: "2010",
+      },
+    ];
     const stepperStep = [
       { key: "01", value: "STEP 01" },
       { key: "02", value: "STEP 02" },
@@ -119,6 +146,13 @@ class FormComponent extends Component {
                 handleNextButtonClick={handleNextButtonClick}
                 options={options}
               ></Step01>
+              <Step02
+                state={this.state}
+                handleFieldChange={handleFieldChange}
+                handleNextButtonClick={handleNextButtonClick}
+                handlePreviousButtonClick={handlePreviousButtonClick}
+                options={yearOptions}
+              ></Step02>
             </form>
           </Box>
         </Grid>

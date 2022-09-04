@@ -1,6 +1,6 @@
 import { Typography, TextField, MenuItem, Button } from "@material-ui/core";
 
-const RenderText = ({ label, color, align, variant, component }) => {
+const RenderText = ({ label, color, align, variant }) => {
   return (
     <Typography
       color={color ? color : "primary"}
