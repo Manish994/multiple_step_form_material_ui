@@ -16,11 +16,22 @@ import Step01 from "./Steps/step01";
 class FormComponent extends Component {
   state = {
     data: {
+      //step01
       firstname: "",
       lastname: "",
       gender: "",
       email: "",
       phonenumber: "",
+
+      //step02
+      address: "",
+      country: "",
+      salary: "",
+
+      //step03
+      year: "",
+      location: "",
+      drink: "",
     },
     error: {},
     currentstep: 0,
@@ -47,9 +58,18 @@ class FormComponent extends Component {
     const { classes } = this.props;
 
     //handle Next Button Click
+    //increase stepper step
     const handleNextButtonClick = () => {
       let { currentstep } = this.state;
       currentstep = currentstep + 1;
+      // this.setState({ currentstep: currentstep });
+      this.setState({ currentstep });
+    };
+
+    //decrease stepper step
+    const handlePreviousButtonClick = () => {
+      let { currentstep } = this.state;
+      currentstep = currentstep - 1;
       // this.setState({ currentstep: currentstep });
       this.setState({ currentstep });
     };
@@ -62,7 +82,7 @@ class FormComponent extends Component {
       },
       {
         key: "female",
-        value: "Femal",
+        value: "Female",
       },
       {
         key: "other",
