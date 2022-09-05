@@ -182,9 +182,16 @@ class FormComponent extends Component {
             />
           );
         case 2:
-          return <Step03 />;
+          return (
+            <Step03
+              state={this.state}
+              handleFieldChange={handleFieldChange}
+              handleNextButtonClick={handleNextButtonClick}
+              handlePreviousButtonClick={handlePreviousButtonClick}
+            />
+          );
         case 3:
-          return <Finished />;
+          return <Finished state={this.state} />;
         default:
           return <Step01 />;
       }

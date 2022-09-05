@@ -32,7 +32,7 @@ function Step01({ options, state, handleFieldChange, handleNextButtonClick }) {
     handleFieldChange,
   })} */}
       {/* </Box> */}
-      <pre>{JSON.stringify(state.data, undefined, 2)}</pre>
+
       <Grid container spacing={2}>
         <Grid item xs={12} sm={6}>
           {RenderFormTextField({
