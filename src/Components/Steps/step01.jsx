@@ -139,7 +139,7 @@ function Step01({ options, state, handleFieldChange, handleNextButtonClick }) {
         {RenderFormButton({
           label: "Next",
           variant: "outlined",
-          handleNextButtonClick,
+          handleButtonClick: handleNextButtonClick,
         })}
       </Grid>
     </>

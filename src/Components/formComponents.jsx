@@ -30,9 +30,10 @@ class FormComponent extends Component {
       address: "",
       country: "",
       salary: "",
+      year: "",
 
       //step03
-      year: "",
+
       location: "",
       drink: "",
     },
@@ -93,8 +94,31 @@ class FormComponent extends Component {
       },
     ];
 
-    //gender array
-    const yearOptions = [
+    // //country list
+    const countryList = [
+      {
+        key: "1",
+        value: "India",
+      },
+      {
+        key: "2",
+        value: "Ameriaca",
+      },
+      {
+        key: "3",
+        value: "London",
+      },
+      {
+        key: "4",
+        value: "Paric",
+      },
+      {
+        key: "5",
+        value: "Italy",
+      },
+    ];
+
+    const yearList = [
       {
         key: "1",
         value: "2000",
@@ -116,11 +140,61 @@ class FormComponent extends Component {
         value: "2010",
       },
     ];
+    const step2Options = [
+      { Year_List: yearList },
+      { Country_List: countryList },
+      {
+        Nature: [
+          { key: "01", value: "Spring" },
+          { key: "02", value: "Winter" },
+        ],
+      },
+      //gender array
+    ];
+
     const stepperStep = [
       { key: "01", value: "STEP 01" },
       { key: "02", value: "STEP 02" },
       { key: "03", value: "STEP 03" },
     ];
+
+    //display components using switch statement
+    const getStepsItems = (steps) => {
+      switch (steps) {
+        case 0:
+          return (
+            <Step01
+              state={this.state}
+              handleFieldChange={handleFieldChange}
+              handleNextButtonClick={handleNextButtonClick}
+              options={options}
+            />
+          );
+        case 1:
+          return (
+            <Step02
+              state={this.state}
+              handleFieldChange={handleFieldChange}
+              handleNextButtonClick={handleNextButtonClick}
+              handlePreviousButtonClick={handlePreviousButtonClick}
+              // options={({ Year: yearOptions }, { Country: countryList })}
+              options_List={step2Options}
+            />
+          );
+        case 2:
+          return <Step03 />;
+        case 3:
+          return <Finished />;
+        default:
+          return <Step01 />;
+      }
+      //   <Step01
+      //   state={this.state}
+      //   handleFieldChange={handleFieldChange}
+      //   handleNextButtonClick={handleNextButtonClick}
+      //   options={options}
+      // ></Step01>
+    };
     return (
       <Grid container className={classes.formContainer}>
         <Grid item xs={12} sm={7}>
@@ -140,19 +214,7 @@ class FormComponent extends Component {
           <Box component={Paper}>
             {/* <Typography> Form Steps</Typography> */}
             <form className={classes.form}>
-              <Step01
-                state={this.state}
-                handleFieldChange={handleFieldChange}
-                handleNextButtonClick={handleNextButtonClick}
-                options={options}
-              ></Step01>
-              <Step02
-                state={this.state}
-                handleFieldChange={handleFieldChange}
-                handleNextButtonClick={handleNextButtonClick}
-                handlePreviousButtonClick={handlePreviousButtonClick}
-                options={yearOptions}
-              ></Step02>
+              {getStepsItems(this.state.currentstep)}
             </form>
           </Box>
         </Grid>

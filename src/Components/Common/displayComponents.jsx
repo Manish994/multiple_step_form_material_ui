@@ -52,6 +52,7 @@ const RenderFormSelectField = ({
   options,
 }) => {
   const { data, error } = state;
+
   return (
     <TextField
       select
@@ -75,11 +76,8 @@ const RenderFormSelectField = ({
   );
 };
 
-const RenderFormButton = ({ label, variant, handleNextButtonClick }) => (
-  <Button
-    variant={variant ? variant : "outlined"}
-    onClick={handleNextButtonClick}
-  >
+const RenderFormButton = ({ label, variant, handleButtonClick }) => (
+  <Button variant={variant ? variant : "outlined"} onClick={handleButtonClick}>
     {label}
   </Button>
 );
